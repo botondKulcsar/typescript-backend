@@ -1,5 +1,7 @@
 import patients from '../../data/patients.json';
-import { NonSensitivePatient } from '../types';
+import { NewPatient, NonSensitivePatient, Patient } from '../types';
+import { v1 as uuid } from 'uuid';
+import { parseString } from '../utils';
 
 const getEntries = (): NonSensitivePatient[] => {
     return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
@@ -8,9 +10,23 @@ const getEntries = (): NonSensitivePatient[] => {
         dateOfBirth,
         gender,
         occupation
-    }));
+    })) as NonSensitivePatient[];
+};
+
+const addPatient = (newPatient: NewPatient): Patient => {
+   
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const id = parseString(uuid());
+    const patient = {
+        id,
+        ...newPatient
+    };
+
+    patients.push(patient);
+    return patient;
 };
 
 export default {
     getEntries,
+    addPatient,
 };
