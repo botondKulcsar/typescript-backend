@@ -1,4 +1,4 @@
-import patients from '../../data/patients.json';
+import patients from '../../data/patients';
 import { NewPatient, NonSensitivePatient, Patient } from '../types';
 import { v1 as uuid } from 'uuid';
 import { parseString } from '../utils';
@@ -17,8 +17,7 @@ const getPatientById = (id: string): Patient | undefined  => {
     const foundPatient = patients.find(p => p.id === id);
     if (foundPatient) {
         return {
-            ...foundPatient,
-            entries: []
+            ...foundPatient
         } as Patient;
     }
     return undefined;
