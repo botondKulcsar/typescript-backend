@@ -10,7 +10,7 @@ export enum Gender {
     Other = 'other'
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 export type Entry =
     | HospitalEntry
     | OccupationalHealthcareEntry
